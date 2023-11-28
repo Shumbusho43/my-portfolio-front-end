@@ -19,17 +19,17 @@ function Navbar() {
                 <div className="w-full md:w-auto" id="navbar-default">
                     <ul className="font-medium flex justify-around p-4 border-t md:p-0 mt-4 md:flex-row md:border-0 md:space-x-8 md:mt-0 md:bg-white items-center">
                         <li>
-                            <a href="#" className="text-xl">
+                            <a href="https://twitter.com/shumbushodavid" className="text-xl">
                                 <i className="ri-twitter-x-fill"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-xl">
+                            <a href="https://www.linkedin.com/in/shumbusho-david-71a244206" className="text-xl">
                                 <i className="ri-linkedin-box-line"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="text-xl">
+                            <a href="https://github.com/Shumbusho43" className="text-xl">
                                 <i className="ri-github-line"></i>
                             </a>
                         </li>
