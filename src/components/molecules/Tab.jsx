@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Tab = ({ tab, isActive, onTabClick }) => {
     return (
         <button
-            className={`px-10 py-2  ${isActive && 'bg-black text-white'}`}
+            className={`px-10 py-2 ${isActive && 'bg-black text-white'}`}
             onClick={() => onTabClick(tab.id)}
         >
             {tab.label}

@@ -3,10 +3,10 @@ import image from './assets/david.jpg'
 import project1 from './assets/project-1.png'
 import project2 from './assets/project-2.png'
 import project3 from './assets/project-3.png'
-import ProjectList from './components/ProjectsList'
-import Tabs from './components/Tabs'
-import Divider from './components/divider'
-import Navbar from './components/navbar'
+import ProjectList from './components/molecules/ProjectsList'
+import Tabs from './components/organisms/Tabs'
+import Divider from './components/atoms/divider'
+import Navbar from './components/organisms/navbar'
 
 function App() {
   const projects =

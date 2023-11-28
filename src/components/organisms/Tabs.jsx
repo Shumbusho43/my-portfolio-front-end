@@ -1,7 +1,7 @@
 // Tabs.js
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Tab from './Tab';
+import Tab from '../molecules/Tab';
 
 // eslint-disable-next-line react/prop-types
 const Tabs = ({ tabsData }) => {

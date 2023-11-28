@@ -16,7 +16,7 @@ const SideLinks = ({ linksData }) => {
                     {linksData.map((link, index) => (
                         <li
                             key={link.id}
-                            className={`p-2 text-2xl cursor-pointer font-medium ${link.id === activeLink ? 'underline' : ''}`}
+                            className={`p-2 mb-4 text-2xl cursor-pointer font-medium ${link.id === activeLink ? 'underline' : ''}`}
                             onClick={() => handleLinkClick(link.id)}
                         >
                             <div className='flex items-center text-xl'>

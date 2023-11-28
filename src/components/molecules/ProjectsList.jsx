@@ -1,6 +1,6 @@
 // ProjectList.js
 import PropTypes from 'prop-types';
-import SideLinks from './SidebarLinks';
+import SideLinks from '../organisms/SidebarLinks';
 
 const ProjectList = ({ projects }) => {
     return (
