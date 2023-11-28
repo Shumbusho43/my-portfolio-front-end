@@ -5,13 +5,13 @@ function Navbar() {
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                         <li>
-                            <a href="#" className="uppercase text-base" aria-current="page">Home</a>
+                            <a href="#home" className="uppercase text-base" aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="#" className="uppercase text-base ">portifolio</a>
+                            <a href="#portifolio" className="uppercase text-base ">portifolio</a>
                         </li>
                         <li>
-                            <a href="#" className="uppercase text-base ">Contact</a>
+                            <a href="#contact" className="uppercase text-base ">Contact</a>
                         </li>
                     </ul>
                 </div>
