@@ -1,0 +1,53 @@
+function Navbar() {
+    return (
+        <nav className="bg-white">
+            <div className="flex flex-wrap items-center justify-between mx-auto mt-16">
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+                        <li>
+                            <a href="#" className="uppercase text-base" aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="#" className="uppercase text-base ">portifolio</a>
+                        </li>
+                        <li>
+                            <a href="#" className="uppercase text-base ">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-base  text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span className="sr-only">Open main menu</span>
+                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white items-center">
+                        <li>
+                            <a href="#" className="text-xl">
+                                <i className="ri-twitter-x-fill"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-xl">
+                                <i className="ri-linkedin-box-line"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-xl">
+                                <i className="ri-github-line"></i>
+                            </a>
+                        </li>
+                        <li className='pl-10'>
+                            <div className="bg-black px-4 h-10 flex items-center justify-center">
+                                <i className="ri-moon-clear-line text-white"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    )
+}
+
+export default Navbar
