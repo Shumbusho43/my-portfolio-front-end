@@ -7,10 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import project1 from './assets/project-1.png'
 import project2 from './assets/project-2.png'
 import project3 from './assets/project-3.png'
-import ProjectList from './components/molecules/ProjectsList'
-import Tabs from './components/organisms/Tabs'
 import Divider from './components/atoms/divider'
 import Navbar from './components/organisms/navbar'
+import SideLinks from './components/organisms/SidebarLinks';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -131,26 +130,10 @@ function App() {
       <Divider customClass={'my-16 border-black'} />
 
       {/* My portifolio */}
-      <div className="py-10" id='portifolio'>
-        <h1 className='uppercase text-3xl text-center font-bold'>my portifolio</h1>
+      <div className="py-8" id='portifolio'>
+        <h1 className='uppercase text-3xl mb-12 text-center font-bold'>my portifolio</h1>
         <div className="flex justify-center">
-          <Tabs tabsData={[
-            {
-              id: 1,
-              label: 'Project (20)',
-              content: <ProjectList projects={projects} />
-            },
-            {
-              id: 2,
-              label: 'Web Dev (2)',
-              content: <ProjectList projects={projects} />
-            },
-            {
-              id: 3,
-              label: 'Mobile (3)',
-              content: <ProjectList projects={projects} />
-            },
-          ]} />
+          <SideLinks linksData={projects} />
         </div>
       </div>
       <Divider customClass={'my-16 border-black'} />
