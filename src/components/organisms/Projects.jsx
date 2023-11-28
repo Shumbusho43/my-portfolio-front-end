@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const SideLinks = ({ linksData }) => {
-    const [activeLink, setActiveLink] = useState(linksData[0].id);
+const Projects = ({ projectsData }) => {
+    const [activeLink, setActiveLink] = useState(projectsData[0].id);
 
     useEffect(() => {
         // Set the first project as active when the component mounts
-        setActiveLink(linksData[0].id);
-    }, [linksData]);
+        setActiveLink(projectsData[0].id);
+    }, [projectsData]);
 
     const handleLinkClick = (linkId) => {
         setActiveLink(() => (linkId));
@@ -17,7 +17,7 @@ const SideLinks = ({ linksData }) => {
         <div className="md:flex">
             <div className="w-full md:w-1/4">
                 <ul className="p-0">
-                    {linksData.map((link, index) => (
+                    {projectsData.map((link, index) => (
                         <li
                             key={link.id}
                             className={`mb-2 p-2 text-lg cursor-pointer ${activeLink === link.id ? 'md:underline font-bold text-black' : 'border-b border-gray-200 md:border-0 dark:border-gray-700'
@@ -56,7 +56,7 @@ const SideLinks = ({ linksData }) => {
                 </ul>
             </div>
             <div className="w-full hidden md:block md:w-3/4 p-4">
-                {linksData.map((link) => (
+                {projectsData.map((link) => (
                     <div key={link.id} className={activeLink === link.id ? 'block' : 'hidden'}>
                         {/* Display project details for larger screens */}
                         <div className='md:flex'>
@@ -78,8 +78,8 @@ const SideLinks = ({ linksData }) => {
     );
 };
 
-SideLinks.propTypes = {
-    linksData: PropTypes.arrayOf(
+Projects.propTypes = {
+    projectsData: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
@@ -90,4 +90,4 @@ SideLinks.propTypes = {
     ).isRequired,
 };
 
-export default SideLinks;
+export default Projects;

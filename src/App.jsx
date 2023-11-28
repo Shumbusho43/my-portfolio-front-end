@@ -9,7 +9,7 @@ import project2 from './assets/project-2.png'
 import project3 from './assets/project-3.png'
 import Divider from './components/atoms/divider'
 import Navbar from './components/organisms/navbar'
-import SideLinks from './components/organisms/SidebarLinks';
+import Projects from './components/organisms/Projects';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -133,7 +133,7 @@ function App() {
       <div className="py-8" id='portifolio'>
         <h1 className='uppercase text-3xl mb-12 text-center font-bold'>my portifolio</h1>
         <div className="flex justify-center">
-          <SideLinks linksData={projects} />
+          <Projects projectsData={projects} />
         </div>
       </div>
       <Divider customClass={'my-16 border-black'} />
