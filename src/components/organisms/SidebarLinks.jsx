@@ -1,48 +1,80 @@
-// SideLinks.js
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const SideLinks = ({ linksData }) => {
     const [activeLink, setActiveLink] = useState(linksData[0].id);
 
+    useEffect(() => {
+        // Set the first project as active when the component mounts
+        setActiveLink(linksData[0].id);
+    }, [linksData]);
+
     const handleLinkClick = (linkId) => {
-        setActiveLink(linkId);
+        setActiveLink(() => (linkId));
     };
 
     return (
-        <div className="flex">
-            <div className="min-w-[25%] max-w-fit">
-                <ol className="">
+        <div className="md:flex">
+            <div className="w-full md:w-1/4">
+                <ul className="p-0">
                     {linksData.map((link, index) => (
                         <li
                             key={link.id}
-                            className={`p-2 mb-4 text-2xl cursor-pointer font-medium ${link.id === activeLink ? 'underline' : ''}`}
-                            onClick={() => handleLinkClick(link.id)}
+                            className={`mb-2 p-2 text-lg cursor-pointer ${activeLink === link.id ? 'md:underline font-bold text-black' : 'border-b border-gray-200 md:border-0 dark:border-gray-700'
+                                }`}
                         >
-                            <div className='flex items-center text-xl'>
-                                <span className='text-gray-500 mr-2'> {`${(index + 1).toString().padStart(2, '0')}.`} </span>
-                                {link.name}
-                            </div>
-                        </li>
+                            <button
+                                type="button"
+                                className="flex items-center justify-between w-full py-5"
+                                onClick={() => handleLinkClick(link.id)}
+                            >
+                                <div className='flex w-full justify-between items-center'>
+                                    <div>
+                                        <span className='text-gray-500 mr-2'>{`${(index + 1).toString().padStart(2, '0')}.`}</span>
+                                        {link.name}
+                                    </div>
+                                    <div className='text-black md:hidden'>
+                                        {activeLink === link.id ? <i className=" ri-arrow-down-s-line"></i> : <i className=" ri-arrow-up-s-line"></i>}
+                                    </div>
+                                </div>
+                            </button>
 
+                            {activeLink === link.id && (
+                                <div className="md:hidden">
+                                    {/* Display project details for small screens */}
+                                    <img src={link.image} alt="project image" className="mt-2 mb-2 w-full" />
+                                    <p className='text-sm leading-7'>{link.Description}</p>
+                                    <div className='my-6'>
+                                        <a className='underline text-base font-medium' href={link.Link}>
+                                            Follow Link
+                                        </a>
+                                    </div>
+                                </div>
+                            )}
+                        </li>
                     ))}
-                </ol>
+                </ul>
             </div>
-            <div className="w-3/4 p-4">
+            <div className="w-full hidden md:block md:w-3/4 p-4">
                 {linksData.map((link) => (
-                    <div key={link.id} className={link.id === activeLink ? 'flex justify-around items-center' : 'hidden'}>
-                        <div className='w-[50%]'>
-                            <img src={link.image} alt="project image" />
-                        </div>
-                        <div className='w-[40%]'>
-                            <h1 className="underline text-2xl font-medium">{link.name}</h1>
-                            <p className='text-sm my-2 leading-7'>{link.Description}</p>
-                            <a className='my-2 underline text-base font-medium' href={link.Link}>Follow Link</a>
+                    <div key={link.id} className={activeLink === link.id ? 'block' : 'hidden'}>
+                        {/* Display project details for larger screens */}
+                        <div className='md:flex'>
+                            <div className='hidden xl:block w-1/2 mx-8'>
+                                <img src={link.image} alt="project image" className='w-full' />
+                            </div>
+                            <div className='w-[90%] xl:w-1/2 ml-auto xl:ml-0 pl-4'>
+                                <h1 className="underline text-2xl font-medium">{link.name}</h1>
+                                <p className='text-sm my-2 leading-7'>{link.Description}</p>
+                                <a className='my-2 underline text-base font-medium' href={link.Link}>
+                                    Follow Link
+                                </a>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
-        </div >
+        </div>
     );
 };
 
@@ -50,8 +82,10 @@ SideLinks.propTypes = {
     linksData: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
-            label: PropTypes.string.isRequired,
-            content: PropTypes.node.isRequired,
+            name: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            Description: PropTypes.string.isRequired,
+            Link: PropTypes.string.isRequired,
         })
     ).isRequired,
 };
