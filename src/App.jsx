@@ -1,5 +1,9 @@
 import './App.css'
+import { useState } from 'react';
+import axios from 'axios';
 import image from './assets/david.jpg'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import project1 from './assets/project-1.png'
 import project2 from './assets/project-2.png'
 import project3 from './assets/project-3.png'
@@ -9,6 +13,52 @@ import Divider from './components/atoms/divider'
 import Navbar from './components/organisms/navbar'
 
 function App() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    message: '',
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Replace 'your-api-endpoint' with the actual endpoint where you want to send the data
+      const response = await axios.post('https://my-portfolio-dgjg.onrender.com/api/v1/contactMe', formData);
+      // Show a success toast
+      toast.success(`Message Sent: ${response.data.message}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
+      // reset the form after successful submission
+      setFormData({
+        fullName: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      // Show an error toast
+      toast.error(`Error: ${error.message}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
   const projects =
     [
       {
@@ -111,14 +161,43 @@ function App() {
           <h1 className='uppercase font-bold my-4 text-3xl'>Contact Me</h1>
           <p className='capitalize text-xl'>{`Let's Work Together`}</p>
         </div>
-        <div className="flex flex-col lg:flex-row justify-center my-4 w-full">
-          <input type="text" placeholder='Full Names' className=' mx-auto border-gray-600 outline-0 p-4 lg:mr-2  border border-1 w-[80%] md:w-full lg:w-[48.5%]' />
-          <input type="text" placeholder='Email address' className='mx-auto border-gray-600 outline-0 p-4 lg:ml-2 border border-1 w-[80%] mt-4 md:w-full lg:mt-0 lg:w-[48.5%]' />
-        </div>
-        <div className='w-[80%] md:w-full mx-auto'>
-          <textarea name="message" placeholder='Write something ...' className='min-h-[10vh] outline-0 border-gray-600 p-4 border border-1 w-full h-[20vh] my-3' id="message"></textarea>
-          <button type="submit" className="bg-black hover:bg-gray-900 text-center w-full px-4  py-6  my-4 text-xl text-white">Submit</button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col lg:flex-row justify-center my-4 w-full">
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Names"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="mx-auto border-gray-600 outline-0 p-4 lg:mr-2 border border-1 w-[80%] md:w-full lg:w-[48.5%]"
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
+              className="mx-auto border-gray-600 outline-0 p-4 lg:ml-2 border border-1 w-[80%] mt-4 md:w-full lg:mt-0 lg:w-[48.5%]"
+            />
+          </div>
+          <div className="w-[80%] md:w-full mx-auto">
+            <textarea
+              name="message"
+              placeholder="Write something ..."
+              value={formData.message}
+              onChange={handleChange}
+              className="min-h-[10vh] outline-0 border-gray-600 p-4 border border-1 w-full h-[20vh] my-3"
+              id="message"
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-black hover:bg-gray-900 text-center w-full px-4 py-6 my-4 text-xl text-white"
+            >
+              Submit
+            </button>
+          </div>
+          <ToastContainer />
+        </form>
       </div>
 
       {/* Footer */}
