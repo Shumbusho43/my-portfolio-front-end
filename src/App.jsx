@@ -86,11 +86,7 @@ function App() {
             {'<'}Hi,my name is <strong>David Shumbusho</strong> /{'>'}
           </p>
           <p className='text-xl leading-9'>
-            I am a senior software developer. Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry.
-            It has survived not only five centuries, but also the leap
-            into electronic
-            typesetting, remaining essentially unchanged.
+          Hello! I'm a results-driven Full Stack Developer with over three years of experience, specializing in robust back-end development. My technical proficiency encompasses Java (with Spring Boot), JavaScript (Node.js & Nest.js), GraphQL, and a strong command of databases such as PostgreSQL, MySQL/MariaDB, MongoDB, and Firebase. I'm adept at version control with Git, GitHub, and GitLab, and I navigate development tools like VS Code and IntelliJ IDEA with ease. In the realm of testing, I leverage Jest to ensure the reliability of my code. Fluent in both English and Kinyarwanda, I bring a multicultural perspective to my work. Beyond coding, I have a keen interest in sports, particularly football and volleyball. Let's build something great together!
           </p>
 
           <p className='mt-8 text-xl'>{`Don't take my word for it, check out`}
@@ -164,7 +160,7 @@ function App() {
       {/* Footer */}
 
       <div className='text-center mt-28 p-4'>
-        info@mistico.me &copy;
+        davidshumbusho10@gmail.com &copy;
         David Shumbusho.
         All rights reserved
       </div>
