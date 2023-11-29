@@ -1,17 +1,28 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import image from './assets/david.jpg'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import project1 from './assets/project-1.png'
-import project2 from './assets/project-2.png'
-import project3 from './assets/project-3.png'
 import Divider from './components/atoms/divider'
 import Navbar from './components/organisms/navbar'
 import Projects from './components/organisms/Projects';
 
 function App() {
+  const [projects, setProjects] = useState([]);
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get('https://my-portfolio-dgjg.onrender.com/api/v1/project');
+      setProjects(response.data.data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+  
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -58,45 +69,7 @@ function App() {
       });
     }
   };
-  const projects =
-    [
-      {
-        id: 1,
-        name: "Project 1",
-        image: project1,
-        Description: `Lorem ipsum dolor sit amet 
-        consectetur adipisicing elit. Placeat perferendis aliquam, 
-        aspernatur autem corrupti illo provident quia recusandae quis architecto,
-        doloremque nulla impedit reprehenderit dolorum. Dicta pariatur
-        hic eveniet rerum.
-        `,
-        Link: "https://remixicon.com/"
-      },
-      {
-        id: 2,
-        name: "Project 2",
-        image: project2,
-        Description: `Lorem ipsum dolor sit amet 
-        consectetur adipisicing elit. Placeat perferendis aliquam, 
-        aspernatur autem corrupti illo provident quia recusandae quis architecto,
-        doloremque nulla impedit reprehenderit dolorum. Dicta pariatur
-        hic eveniet rerum.
-        `,
-        Link: "https://remixicon.com/"
-      },
-      {
-        id: 3,
-        name: "Project 3",
-        image: project3,
-        Description: `Lorem ipsum dolor sit amet 
-        consectetur adipisicing elit. Placeat perferendis aliquam, 
-        aspernatur autem corrupti illo provident quia recusandae quis architecto,
-        doloremque nulla impedit reprehenderit dolorum. Dicta pariatur
-        hic eveniet rerum.
-        `,
-        Link: "https://remixicon.com/"
-      }
-    ]
+
   return (
     <div className='max-w-screen-xl mx-auto overflow-x-hidden'>
       <Navbar />
@@ -133,7 +106,7 @@ function App() {
       <div className="py-8" id='portifolio'>
         <h1 className='uppercase text-3xl mb-12 text-center font-bold'>my portifolio</h1>
         <div className="flex justify-center">
-          <Projects projectsData={projects} />
+          {projects.length > 0 && <Projects projectsData={projects} />}
         </div>
       </div>
       <Divider customClass={'my-16 border-black'} />
@@ -190,6 +163,7 @@ function App() {
         David Shumbusho.
         All rights reserved
       </div>
+
     </div>
   )
 }
