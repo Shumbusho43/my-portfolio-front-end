@@ -97,9 +97,9 @@ function App() {
             <a href="#portifolio" className='underline font-bold mx-4'>my portifolio</a>
           </p>
           <div className='flex flex-col lg:flex-row bg-black py-8 text-white justify-between px-4 lg:px-12 mt-8 '>
-            <div className='flex items-center'><h1 className='font-bold text-5xl mx-4'>5+</h1> <span className='text-xl'>Years of experience</span></div>
+            <div className='flex items-center'><h1 className='font-bold text-5xl mx-4'>{new Date().getFullYear() - 2018}+</h1> <span className='text-xl'>Years of experience</span></div>
             <Divider customClass={'my-6 border-white xl:hidden'} />
-            <div className='flex items-center'><h1 className='font-bold text-5xl mx-4'>10+</h1> <span className='text-xl'>successful projects</span></div>
+            <div className='flex items-center'><h1 className='font-bold text-5xl mx-4'>{projects.length > 0 ? projects.length : '..'}+</h1> <span className='text-xl'>successful projects</span></div>
           </div>
         </div>
       </div>
