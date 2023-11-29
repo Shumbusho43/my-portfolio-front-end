@@ -10,11 +10,14 @@ import Projects from './components/organisms/Projects';
 
 function App() {
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const fetchProjects = async () => {
     try {
       const response = await axios.get('https://my-portfolio-dgjg.onrender.com/api/v1/project');
+      setIsLoading(!isLoading);
       setProjects(response.data.data);
     } catch (error) {
+      setIsLoading(!isLoading);
       console.error('Error fetching projects:', error);
     }
   };
@@ -22,7 +25,7 @@ function App() {
   useEffect(() => {
     fetchProjects();
   }, []);
-  
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -106,7 +109,9 @@ function App() {
       <div className="py-8" id='portifolio'>
         <h1 className='uppercase text-3xl mb-12 text-center font-bold'>my portifolio</h1>
         <div className="flex justify-center">
-          {projects.length > 0 && <Projects projectsData={projects} />}
+          {isLoading ? 'Loading the projects ....' :
+            projects.length > 0 && <Projects projectsData={projects} />
+          }
         </div>
       </div>
       <Divider customClass={'my-16 border-black'} />
